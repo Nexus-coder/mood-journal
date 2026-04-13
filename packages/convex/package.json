@@ -14,7 +14,15 @@
       "default": "./convex/_generated/server.js"
     },
     "./_generated/dataModel": {
-      "types": "./convex/_generated/dataModel.d.ts"
+      "types": "./convex/_generated/dataModel.d.ts",
+      "default": "./convex/_generated/dataModel.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "_generated/api": ["./convex/_generated/api.d.ts"],
+      "_generated/server": ["./convex/_generated/server.d.ts"],
+      "_generated/dataModel": ["./convex/_generated/dataModel.d.ts"]
     }
   },
   "scripts": {
