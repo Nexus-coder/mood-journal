@@ -1,13 +1,13 @@
 "use client";
 
+import { useSidebar } from "../../_components/providers/sidebar-provider";
 import { useQuery } from "convex/react";
-import { api } from "@mood-journal/convex/_generated/api";
+import { usePathname, useRouter } from "next/navigation";
 import { Filter, PanelLeftClose, ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { api } from "@mood-journal/convex/_generated/api";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MoodChart } from "./mood-chart";
-import { useSidebar } from "../../_components/providers/sidebar-provider";
-import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { getPlainText } from "@/lib/tiptap-utils";
 
 const ENTRIES_LIMIT = 5;
