@@ -11,7 +11,7 @@ interface WritingCanvasProps {
   onSave: () => void;
   wordCount: number;
   setWordCount: (count: number) => void;
-  saveStatus?: "idle" | "saving" | "saved" | "error";
+  saveStatus?: "idle" | "saving" | "saved" | "error" | "unsaved";
 }
 
 export function WritingCanvas({ 
@@ -49,12 +49,14 @@ export function WritingCanvas({
             <>
               <span className="w-1 h-1 rounded-full bg-border"></span>
               <span className={cn(
-                "transition-all duration-500 flex items-center gap-1.5",
+                "transition-all duration-300 flex items-center gap-1.5",
                 saveStatus === "saving" ? "text-primary animate-pulse" : 
-                saveStatus === "saved" ? "text-emerald-500" : "text-destructive"
+                saveStatus === "saved" ? "text-emerald-500" : 
+                saveStatus === "unsaved" ? "text-amber-500/80" : "text-destructive"
               )}>
                 {saveStatus === "saving" ? "Saving..." : 
-                 saveStatus === "saved" ? "Saved" : "Save Error"}
+                 saveStatus === "saved" ? "Saved" : 
+                 saveStatus === "unsaved" ? "Unsaved" : "Save Error"}
               </span>
             </>
           )}

@@ -52,26 +52,32 @@ export function TiptapEditor({
       },
     },
     onUpdate: ({ editor }) => {
-      // Pass the JSON to the parent
-      onChange(editor.getJSON());
+      // Serialize what the editor just produced so the parent's echo
+      // (setBody → re-render → content prop) is recognized as "ours"
+      // and the sync useEffect below will skip the redundant setContent.
+      const json = editor.getJSON();
+      const serialized = JSON.stringify(json);
+      lastInjectedContent.current = serialized;
+
+      onChange(json);
       onWordCountChange(editor.storage.characterCount.words());
     },
   });
 
-  // Track the last content string we pushed into the editor so we can
-  // distinguish parent-driven updates from user edits (which we should never
-  // overwrite, as the editor is the source of truth while the user is typing).
-  const lastInjectedContent = useRef<string>("");
+  // Track the last content string we pushed into (or received from) the
+  // editor so we can distinguish parent-driven updates from editor echoes.
+  const lastInjectedContent = useRef<string>(content || "");
 
   useEffect(() => {
     if (!editor || !content) return;
-    // Only push content into the editor when the parent provides a genuinely
-    // new value — i.e., one we haven't already set — to avoid a feedback loop
-    // where onChange → setBody → this effect → setContent → onChange.
-    if (content !== lastInjectedContent.current) {
-      lastInjectedContent.current = content;
-      editor.commands.setContent(parseInitialContent(content), { emitUpdate: false });
-    }
+
+    // Skip if this content is the same thing the editor just produced
+    // (i.e. it's the parent echoing back what onUpdate sent).
+    if (content === lastInjectedContent.current) return;
+
+    // Genuinely new content from the parent (initial load, draft recovery, etc.)
+    lastInjectedContent.current = content;
+    editor.commands.setContent(parseInitialContent(content), { emitUpdate: false });
   }, [editor, content]);
 
   function parseInitialContent(raw: string) {
@@ -79,7 +85,7 @@ export function TiptapEditor({
     try {
       return JSON.parse(raw);
     } catch (e) {
-      // If it's not JSON, it's legacy plain text. 
+      // If it's not JSON, it's legacy plain text.
       // Tiptap can handle plain text strings as HTML/text content.
       return raw;
     }

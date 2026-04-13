@@ -128,6 +128,7 @@ export const update = mutation({
     body: v.optional(v.string()),
     mood: v.optional(v.union(v.literal("positive"), v.literal("neutral"), v.literal("anxious"))),
     tags: v.optional(v.array(v.string())),
+    skipSentiment: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -159,8 +160,9 @@ export const update = mutation({
 
     await ctx.db.patch(args.entryId, patch);
 
-    // Re-analyze sentiment if body changed
-    if (args.body !== undefined) {
+    // Only re-analyze sentiment when explicitly requested (manual save).
+    // Autosaves pass skipSentiment: true to avoid hammering the AI API.
+    if (args.body !== undefined && !args.skipSentiment) {
       await ctx.scheduler.runAfter(0, api.sentiment.analyzeEntry, { 
         entryId: args.entryId, 
         body: args.body 
