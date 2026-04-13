@@ -2,13 +2,15 @@
 
 import { useQuery } from "convex/react";
 import { api } from "@mood-journal/convex/_generated/api";
-import { Filter, PanelLeftClose } from "lucide-react";
+import { Filter, PanelLeftClose, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MoodChart } from "./mood-chart";
 import { useSidebar } from "../../_components/providers/sidebar-provider";
 import { usePathname, useRouter } from "next/navigation";
 import { getPlainText } from "@/lib/tiptap-utils";
+
+const ENTRIES_LIMIT = 5;
 
 export function SecondarySidebar() {
   const { isSecondaryCollapsed, toggleSecondary } = useSidebar();
@@ -36,6 +38,9 @@ export function SecondarySidebar() {
 
     return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
   };
+
+  const visibleEntries = entries?.slice(0, ENTRIES_LIMIT) ?? [];
+  const hasMore = (entries?.length ?? 0) > ENTRIES_LIMIT;
 
   return (
     <aside
@@ -86,29 +91,47 @@ export function SecondarySidebar() {
                   <p className="text-xs text-muted-foreground">No entries yet.</p>
                 </div>
               ) : (
-                entries.slice(0, 10).map((entry) => (
-                  <button
-                    key={entry._id}
-                    onClick={() => router.push(`/entries/${entry._id}`)}
-                    className={cn(
-                      "text-left px-5 py-4 border-l-2 transition-colors group border-t border-border first:border-t-0",
-                      pathname.includes(entry._id)
-                        ? "bg-muted/50 border-foreground"
-                        : "border-transparent hover:bg-muted/50"
-                    )}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-medium text-muted-foreground">
-                        {formatDate(entry._creationTime)}
-                      </span>
-                      <div className={cn("w-2 h-2 rounded-full", getMoodColor(entry.mood))} />
+                <>
+                  {visibleEntries.map((entry) => (
+                    <button
+                      key={entry._id}
+                      onClick={() => router.push(`/entries/${entry._id}`)}
+                      className={cn(
+                        "text-left px-5 py-4 border-l-2 transition-colors group border-t border-border first:border-t-0",
+                        pathname.includes(entry._id)
+                          ? "bg-muted/50 border-foreground"
+                          : "border-transparent hover:bg-muted/50"
+                      )}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-medium text-muted-foreground">
+                          {formatDate(entry._creationTime)}
+                        </span>
+                        <div className={cn("w-2 h-2 rounded-full", getMoodColor(entry.mood))} />
+                      </div>
+                      <h3 className="text-sm font-medium text-foreground truncate mb-1">{entry.title}</h3>
+                      <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                        {getPlainText(entry.body).slice(0, 100)}...
+                      </p>
+                    </button>
+                  ))}
+
+                  {/* Show more button */}
+                  {hasMore && (
+                    <div className="px-5 py-4 border-t border-border">
+                      <button
+                        onClick={() => router.push("/entries")}
+                        className="w-full flex items-center justify-between text-xs font-medium text-muted-foreground hover:text-foreground transition-colors group py-1"
+                      >
+                        <span>Show all {entries.length} entries</span>
+                        <ArrowRight
+                          size={13}
+                          className="opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all"
+                        />
+                      </button>
                     </div>
-                    <h3 className="text-sm font-medium text-foreground truncate mb-1">{entry.title}</h3>
-                    <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
-                      {getPlainText(entry.body).slice(0, 100)}...
-                    </p>
-                  </button>
-                ))
+                  )}
+                </>
               )}
             </div>
           </ScrollArea>
