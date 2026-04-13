@@ -1,0 +1,16 @@
+{
+  "extends": "@mood-journal/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["convex/*"]
+    }
+  },
+  "include": ["convex/**/*.ts", "_generated/**/*.ts"],
+  "exclude": ["node_modules"]
+}

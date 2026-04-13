@@ -1,0 +1,23 @@
+{
+  "name": "mood-journal-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@11.11.1",
+  "scripts": {
+    "dev": "turbo run dev --parallel --filter=@mood-journal/web --filter=@mood-journal/mobile --filter=@mood-journal/convex",
+    "dev:web": "turbo run dev --parallel --filter=@mood-journal/convex --filter=@mood-journal/web ",
+    "dev:mobile": "turbo run dev --parallel --filter=@mood-journal/mobile --filter=@mood-journal/convex",
+    "build": "turbo run deploy --filter=@mood-journal/convex && turbo run build --filter=@mood-journal/web",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.9.6"
+  }
+}

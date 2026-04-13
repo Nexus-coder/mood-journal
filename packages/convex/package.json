@@ -1,0 +1,23 @@
+{
+  "name": "@mood-journal/convex",
+  "version": "0.0.1",
+  "private": true,
+  "main": "convex/_generated/api.js",
+  "types": "convex/_generated/api.d.ts",
+  "exports": {
+    "./_generated/api": "./convex/_generated/api.js",
+    "./_generated/server": "./convex/_generated/server.js"
+  },
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "convex deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.52",
+    "@auth/core": "^0.37.0",
+    "ai": "^6.0.158",
+    "convex": "^1.19.2",
+    "zod": "^4.3.6"
+  }
+}
