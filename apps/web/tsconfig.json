@@ -12,7 +12,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "../../packages/convex/convex/_generated/**/*.ts"
+    "../../packages/convex/convex/_generated/**/*"
   ],
   "exclude": ["node_modules"]
 }
