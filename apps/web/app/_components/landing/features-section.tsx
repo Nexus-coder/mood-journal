@@ -131,7 +131,7 @@ export function FeaturesSection() {
 
         {/* Feature groups */}
         {featureGroups.map((group, gi) => (
-          <div key={gi} className="space-y-10">
+          <div key={gi} className="space-y-10" id={gi === 2 ? "security" : undefined}>
             {/* Group heading row */}
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-6 border-b border-border/50">
               <div>

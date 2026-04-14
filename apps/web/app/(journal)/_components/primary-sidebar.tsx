@@ -30,9 +30,23 @@ export function PrimarySidebar() {
 
   return (
     <nav className="w-16 border-r border-border flex flex-col items-center py-6 bg-muted/30 hidden sm:flex shrink-0 z-20">
-      <Link href="/" className="text-sm font-semibold tracking-tighter mb-8 text-foreground group">
-        Mood Journal
-      </Link>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <Link
+              href="/"
+              className="mb-10 group relative flex items-center justify-center pt-2"
+            >
+              <div className="size-9 rounded-xl bg-primary flex items-center justify-center transition-all group-hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                <span className="text-primary-foreground font-bold text-lg leading-none">M</span>
+              </div>
+            </Link>
+          }
+        />
+        <TooltipContent side="right">
+          <p>Mood Journal</p>
+        </TooltipContent>
+      </Tooltip>
 
       <div className="flex flex-col gap-6 w-full items-center">
         {navItems.map((item, idx) => {
@@ -45,18 +59,25 @@ export function PrimarySidebar() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-muted-foreground hover:text-foreground transition-colors relative group p-2",
-                      isActive && "text-foreground"
+                      "w-full flex items-center justify-center transition-colors relative group py-3",
+                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     {isActive && (
-                      <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-1 h-4 bg-primary rounded-r-full" />
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-primary rounded-r-full shadow-[0_0_8px_rgba(59,130,246,0.3)]" />
                     )}
-                    <Icon size={20} strokeWidth={1.5} />
+                    <Icon 
+                      size={20} 
+                      strokeWidth={1.5} 
+                      className={cn(
+                        "transition-all duration-300 group-hover:scale-110", 
+                        isActive && "scale-110"
+                      )} 
+                    />
                   </Link>
                 }
               />
-              <TooltipContent side="right">
+              <TooltipContent side="right" sideOffset={10}>
                 <p>{item.label}</p>
               </TooltipContent>
             </Tooltip>

@@ -91,6 +91,7 @@ export default function LandingPage() {
           <span>Built with ❤️ for emotional clarity.</span>
           <div className="flex items-center gap-5 font-medium">
             <a href="#features" className="hover:text-foreground transition-colors">Features</a>
+            <a href="#security" className="hover:text-foreground transition-colors">Security</a>
             <Link href="/login" className="hover:text-foreground transition-colors">Login</Link>
             <Link href="/signup" className="hover:text-foreground transition-colors">Sign up</Link>
           </div>
