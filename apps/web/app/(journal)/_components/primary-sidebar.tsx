@@ -31,7 +31,7 @@ export function PrimarySidebar() {
   return (
     <nav className="w-16 border-r border-border flex flex-col items-center py-6 bg-muted/30 hidden sm:flex shrink-0 z-20">
       <Link href="/" className="text-sm font-semibold tracking-tighter mb-8 text-foreground group">
-        JRNL
+        Mood Journal
       </Link>
 
       <div className="flex flex-col gap-6 w-full items-center">

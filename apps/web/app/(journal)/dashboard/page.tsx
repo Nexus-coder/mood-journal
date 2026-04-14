@@ -19,7 +19,7 @@ export default function DashboardPage() {
         <Button variant="ghost" size="icon" className="text-muted-foreground">
           <Menu size={20} />
         </Button>
-        <div className="text-sm font-semibold tracking-tighter text-foreground">JRNL</div>
+        <div className="text-sm font-semibold tracking-tighter text-foreground">Mood Journal</div>
         <Avatar className="size-8 cursor-pointer border border-border">
           <AvatarFallback className="text-[10px] font-medium text-muted-foreground bg-muted">
             ME

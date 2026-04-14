@@ -5,6 +5,7 @@ import { useConvexAuth } from "convex/react";
 import { PlayCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { BackgroundEffects } from "./_components/landing/background-effects";
 import { LandingNav } from "./_components/landing/landing-nav";
@@ -40,7 +41,9 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fade-up-delay-3">
-            {!isLoading && (
+            {isLoading ? (
+              <Skeleton className="h-[72px] w-[200px] rounded-2xl" />
+            ) : (
               <Link href={isAuthenticated ? "/dashboard" : "/signup"} className="w-full sm:w-auto">
                 <Button className="bg-primary text-primary-foreground px-7 py-6 rounded-2xl text-sm font-medium hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/10 w-full flex justify-center items-center gap-2 h-auto">
                   {isAuthenticated ? "Go to Dashboard" : "Start journaling"}
@@ -83,7 +86,7 @@ export default function LandingPage() {
             <div className="size-5 bg-primary rounded-md flex items-center justify-center">
               <span className="text-primary-foreground text-[9px] tracking-tighter leading-none">JR</span>
             </div>
-            JRNL
+            Mood Journal
           </div>
           <span>Built with ❤️ for emotional clarity.</span>
           <div className="flex items-center gap-5 font-medium">

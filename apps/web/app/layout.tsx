@@ -13,18 +13,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
-  title: "JRNL - Clarity through reflection",
+  metadataBase: new URL("https://mood.andrewkimani.co.ke"),
+  title: "Mood Journal - Clarity through reflection",
   description: "A minimalist space to capture your thoughts, discover emerging patterns, and track your emotional well-being.",
   openGraph: {
-    title: "JRNL - Clarity through reflection",
+    title: "Mood Journal - Clarity through reflection",
     description: "Discover emerging patterns and track your emotional well-being over time.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     type: "website",
-  },
-  icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
   },
 };
 

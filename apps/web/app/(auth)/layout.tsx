@@ -7,10 +7,10 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       <header className="w-full px-6 py-8 flex justify-between items-center max-w-[1400px] mx-auto">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="size-8 rounded-xl bg-neutral-900 flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95 shadow-lg shadow-neutral-900/10">
-            <span className="text-white font-bold text-lg leading-none">J</span>
+            <span className="text-white font-bold text-lg leading-none">M</span>
           </div>
           <span className="text-lg font-medium tracking-tight text-neutral-900 group-hover:opacity-80 transition-opacity">
-            JRNL
+            Mood Journal
           </span>
         </Link>
       </header>
@@ -22,7 +22,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         </div>
       </main>
       <footer className="w-full px-6 py-8 text-center text-xs text-neutral-400 font-medium tracking-wide uppercase">
-        © {new Date().getFullYear()} JRNL — The art of reflection.
+        © {new Date().getFullYear()} Mood Journal — The art of reflection.
       </footer>
     </div>
   );

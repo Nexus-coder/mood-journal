@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useConvexAuth } from "convex/react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function LandingNav() {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -15,7 +16,7 @@ export function LandingNav() {
         <div className="size-6 bg-primary rounded-md flex items-center justify-center">
           <span className="text-primary-foreground text-[10px] tracking-tighter leading-none">JR</span>
         </div>
-        JRNL
+        Mood Journal
       </div>
 
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
@@ -26,7 +27,9 @@ export function LandingNav() {
 
       <div className="flex items-center gap-4">
         <ThemeToggle />
-        {!isLoading && (
+        {isLoading ? (
+          <Skeleton className="h-[42px] w-[130px] rounded-full" />
+        ) : (
           <>
             {isAuthenticated ? (
               <Link href="/dashboard">
