@@ -1,7 +1,7 @@
 "use client";
 
-import { EntriesHeader } from "./_components/entries-header";
 import { EntryList } from "./_components/entry-list";
+import { EntriesHeader } from "./_components/entries-header";
 
 export default function EntriesPage() {
   return (

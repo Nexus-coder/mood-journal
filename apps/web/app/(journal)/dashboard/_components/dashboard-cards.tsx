@@ -1,10 +1,11 @@
 "use client";
 
-import { Lightbulb, ArrowRight } from "lucide-react";
-import { useQuery } from "convex/react";
-import { api } from "@mood-journal/convex/_generated/api";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useQuery } from "convex/react";
+import { Lightbulb, ArrowRight } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { api } from "@mood-journal/convex/_generated/api";
 
 export function DashboardCards() {
   const summary = useQuery(api.sentiment.getSummary);

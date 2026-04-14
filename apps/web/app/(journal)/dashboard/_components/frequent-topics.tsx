@@ -1,10 +1,12 @@
 "use client";
 
 import { useQuery } from "convex/react";
-import { api } from "@mood-journal/convex/_generated/api";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 import { Sparkles } from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+
+import { api } from "@mood-journal/convex/_generated/api";
 
 export function FrequentTopics() {
   const tags = useQuery(api.tags.list);

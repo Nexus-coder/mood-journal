@@ -1,7 +1,8 @@
 "use client";
 
-import { useConvexAuth, useMutation } from "convex/react";
 import { useEffect, useState } from "react";
+import { useConvexAuth, useMutation } from "convex/react";
+
 import { api } from "@mood-journal/convex/_generated/api";
 
 /**

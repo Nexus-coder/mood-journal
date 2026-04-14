@@ -1,11 +1,13 @@
 "use client";
 
+import { useMutation, useQuery } from "convex/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef, useCallback, Suspense } from "react";
+
 import { WritingCanvas } from "../_components/writing-canvas";
 import { SentimentIndicator } from "../_components/sentiment-indicator";
-import { useMutation, useQuery } from "convex/react";
+
 import { api } from "@mood-journal/convex/_generated/api";
-import { useRouter, useSearchParams } from "next/navigation";
 
 // ---------------------------------------------------------------------------
 // Draft shape stored in localStorage
@@ -126,15 +128,15 @@ function JournalContent() {
       try {
         const initialBody = prompt
           ? JSON.stringify({
-              type: "doc",
-              content: [
-                {
-                  type: "blockquote",
-                  content: [{ type: "text", text: prompt }],
-                },
-                { type: "paragraph", content: [] },
-              ],
-            })
+            type: "doc",
+            content: [
+              {
+                type: "blockquote",
+                content: [{ type: "text", text: prompt }],
+              },
+              { type: "paragraph", content: [] },
+            ],
+          })
           : "";
 
         const id = await createEntry({

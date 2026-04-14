@@ -1,13 +1,15 @@
 "use client";
 
 import { Menu } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
 import { WelcomeHeader } from "./_components/welcome-header";
 import { QuickEntry } from "./_components/quick-entry";
 import { DashboardCards } from "./_components/dashboard-cards";
 import { FrequentTopics } from "./_components/frequent-topics";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function DashboardPage() {
   return (
@@ -32,7 +34,7 @@ export default function DashboardPage() {
             <QuickEntry />
             <DashboardCards />
             <div className="bg-muted/30 border border-border rounded-3xl p-6 sm:p-8">
-               <FrequentTopics />
+              <FrequentTopics />
             </div>
           </div>
         </div>

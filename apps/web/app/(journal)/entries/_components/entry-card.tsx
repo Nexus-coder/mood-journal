@@ -1,8 +1,10 @@
 "use client";
 
-import { Calendar, Smile, Meh, Frown } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+
+import { Badge } from "@/components/ui/badge";
+
+import { Calendar, Smile, Meh, Frown } from "lucide-react";
 
 export type EntryMood = "positive" | "neutral" | "anxious";
 
@@ -17,21 +19,21 @@ interface EntryCardProps {
 }
 
 const moodConfig = {
-  positive: { 
-    icon: Smile, 
-    color: "text-emerald-500", 
+  positive: {
+    icon: Smile,
+    color: "text-emerald-500",
     bg: "bg-emerald-500/10 dark:bg-emerald-400/20",
     label: "Positive"
   },
-  neutral: { 
-    icon: Meh, 
-    color: "text-muted-foreground", 
+  neutral: {
+    icon: Meh,
+    color: "text-muted-foreground",
     bg: "bg-muted",
     label: "Neutral"
   },
-  anxious: { 
-    icon: Frown, 
-    color: "text-amber-500", 
+  anxious: {
+    icon: Frown,
+    color: "text-amber-500",
     bg: "bg-amber-500/10 dark:bg-amber-400/20",
     label: "Anxious"
   },
@@ -42,7 +44,7 @@ export function EntryCard({ id, date, time, mood, title, contentSnippet, tags }:
   const Icon = config.icon;
 
   return (
-    <Link 
+    <Link
       href={`/entries/${id}`}
       className="group border border-border/50 rounded-2xl p-6 bg-background hover:border-primary/30 hover:shadow-md transition-all cursor-pointer relative overflow-hidden block"
     >
@@ -65,9 +67,9 @@ export function EntryCard({ id, date, time, mood, title, contentSnippet, tags }:
         </div>
         <div className="flex flex-wrap gap-1.5 order-last sm:order-none">
           {tags.map((tag) => (
-            <Badge 
-              key={tag} 
-              variant="secondary" 
+            <Badge
+              key={tag}
+              variant="secondary"
               className="text-[10px] font-medium px-2 py-0 bg-muted text-muted-foreground border-none shadow-none"
             >
               {tag}
@@ -75,7 +77,7 @@ export function EntryCard({ id, date, time, mood, title, contentSnippet, tags }:
           ))}
         </div>
       </div>
-      
+
       <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
         {contentSnippet}
       </p>

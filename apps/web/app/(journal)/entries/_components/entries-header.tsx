@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, Filter } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -19,8 +20,8 @@ export function EntriesHeader() {
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1 group">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
-          <Input 
-            placeholder="Search entries..." 
+          <Input
+            placeholder="Search entries..."
             className="pl-10 bg-background border-border focus-visible:ring-primary/20 h-10 rounded-xl"
           />
         </div>

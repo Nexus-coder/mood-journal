@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ConvexClientProvider } from "./convex-client-provider";
+
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
+
+import { ConvexClientProvider } from "./convex-client-provider";
 import "./globals.css";
 
 const inter = Inter({

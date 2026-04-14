@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useConvexAuth } from "convex/react";
 import { PlayCircle } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+
 import { BackgroundEffects } from "./_components/landing/background-effects";
 import { LandingNav } from "./_components/landing/landing-nav";
 import { FloatingMockups } from "./_components/landing/floating-mockups";

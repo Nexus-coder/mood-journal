@@ -1,9 +1,11 @@
 "use client";
 
 import { useQuery } from "convex/react";
-import { api } from "@mood-journal/convex/_generated/api";
+
 import { EntryCard } from "./entry-card";
 import { getPlainText } from "@/lib/tiptap-utils";
+
+import { api } from "@mood-journal/convex/_generated/api";
 
 export function EntryList() {
   const entries = useQuery(api.entries.list);
@@ -30,7 +32,7 @@ export function EntryList() {
   return (
     <div className="px-6 sm:px-12 pb-20 flex flex-col gap-4">
       {entries.map((entry: any) => (
-        <EntryCard 
+        <EntryCard
           key={entry._id}
           id={entry._id}
           date={new Date(entry._creationTime).toLocaleDateString("en-US", {
@@ -45,7 +47,7 @@ export function EntryList() {
           mood={entry.mood}
           title={entry.title}
           contentSnippet={getPlainText(entry.body).slice(0, 160) + (getPlainText(entry.body).length > 160 ? "..." : "")}
-          tags={[]} 
+          tags={[]}
         />
       ))}
     </div>

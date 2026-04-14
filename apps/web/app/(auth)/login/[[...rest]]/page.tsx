@@ -1,5 +1,3 @@
-"use client";
-
 import { SignIn } from "@clerk/nextjs";
 
 export default function LoginPage() {
@@ -14,7 +12,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <SignIn 
+      <SignIn
         appearance={{
           elements: {
             rootBox: "w-full",

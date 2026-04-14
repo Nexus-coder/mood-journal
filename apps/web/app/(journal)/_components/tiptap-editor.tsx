@@ -1,12 +1,13 @@
 "use client";
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import { BubbleMenu } from "@tiptap/react/menus";
-import StarterKit from "@tiptap/starter-kit";
-import Placeholder from "@tiptap/extension-placeholder";
-import CharacterCount from "@tiptap/extension-character-count";
-import { Bold, Italic, List, Quote, Heading1, Heading2 } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { Bold, Italic, List, Quote, Heading1, Heading2 } from "lucide-react";
+
+import StarterKit from "@tiptap/starter-kit";
+import { BubbleMenu } from "@tiptap/react/menus";
+import Placeholder from "@tiptap/extension-placeholder";
+import { useEditor, EditorContent } from "@tiptap/react";
+import CharacterCount from "@tiptap/extension-character-count";
 
 interface TiptapEditorProps {
   content: string;
